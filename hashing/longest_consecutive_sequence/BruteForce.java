@@ -23,8 +23,6 @@ class Solution {
 
         return longest;
     }
-
-    // helper function
     public boolean arrayContains(int[] nums, int target){
         for(int num : nums){
             if(num == target){
