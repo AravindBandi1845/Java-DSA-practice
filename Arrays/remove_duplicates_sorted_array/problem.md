@@ -27,6 +27,6 @@ Output:
 - -100 ≤ nums[i] ≤ 100
 - nums is sorted in non-decreasing order
 
-## Notes
+## Notes:
 - Do not use extra space.
 - Modify the array in-place.
