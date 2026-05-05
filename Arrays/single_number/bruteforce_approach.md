@@ -39,7 +39,6 @@ O(n²)
 O(1)
 
 ---
-
 ## Drawback
 - Very slow for large inputs
 - Repeated comparisons
