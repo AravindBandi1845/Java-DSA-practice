@@ -2,47 +2,52 @@
 
 ## Idea
 
-Instead of generating all permutations, directly compute the next lexicographically greater permutation.
+Instead of generating all possible permutations, directly find the next lexicographically greater permutation by modifying the array in-place.
 
-The algorithm works in three steps:
+The algorithm consists of three steps:
 
-1. Find the first index from the right where the sequence starts decreasing (pivot).
-2. Find the smallest element greater than the pivot on its right side and swap them.
-3. Reverse the suffix after the pivot to obtain the smallest possible arrangement.
+1. Find the pivot (the first decreasing element from the right).
+2. Find the successor (the smallest element greater than the pivot on its right).
+3. Swap them and reverse the remaining suffix.
 
-This guarantees the immediate next lexicographical permutation.
+This produces the immediate next permutation in lexicographical order.
 
 ---
 
 ## Key Concept
 
-- The suffix after the pivot is always in descending order.
-- Swapping the pivot with the next larger element creates a larger permutation.
-- Reversing the suffix converts it into ascending order, producing the smallest possible permutation greater than the current one.
+The array can be divided into two parts:
+
+- Prefix
+- Suffix
+
+The suffix is always in descending order.
+
+By swapping the pivot with the next greater element and reversing the suffix, we obtain the smallest permutation greater than the current one.
 
 ---
 
 ## Algorithm Steps
 
-1. Traverse from right to left to find the first index `i` such that:
+1. Traverse the array from right to left to find the first index `idx` such that:
 
    ```
-   nums[i] < nums[i + 1]
+   nums[idx] < nums[idx + 1]
    ```
 
    This index is called the **pivot**.
 
-2. If no pivot exists:
+2. If no such index exists:
 
-   - The array is in descending order.
+   - The array is the largest possible permutation.
    - Reverse the entire array.
    - Return.
 
-3. Traverse from the end of the array to find the first element greater than `nums[pivot]`.
+3. Starting from the end of the array, find the first element greater than `nums[idx]`.
 
-4. Swap the pivot with that element.
+4. Swap that element with the pivot.
 
-5. Reverse the subarray from `pivot + 1` to the end.
+5. Reverse the subarray from `idx + 1` to the end.
 
 6. The array now represents the next lexicographical permutation.
 
@@ -56,20 +61,18 @@ Input:
 nums = [1,2,3]
 ```
 
-### Step 1
-
-Pivot:
+### Step 1: Find Pivot
 
 ```
 1 2 3
-    ^
+  ^
 ```
 
-(index = 1)
+Pivot = 2
 
-### Step 2
+---
 
-Find the next greater element from the right:
+### Step 2: Find Successor
 
 ```
 3
@@ -81,17 +84,13 @@ Swap:
 1 3 2
 ```
 
-### Step 3
+---
 
-Reverse the suffix after the pivot.
+### Step 3: Reverse Suffix
 
-The suffix contains only one element, so the array remains:
+Suffix contains only one element.
 
-```
-[1,3,2]
-```
-
-Output:
+Final Answer:
 
 ```
 [1,3,2]
@@ -104,10 +103,45 @@ Output:
 Input:
 
 ```
-nums = [3,2,1]
+nums = [1,3,2]
 ```
 
-No pivot exists because the array is completely decreasing.
+Pivot:
+
+```
+1 3 2
+^
+```
+
+Successor:
+
+```
+2
+```
+
+Swap:
+
+```
+2 3 1
+```
+
+Reverse suffix:
+
+```
+[2,1,3]
+```
+
+---
+
+### Descending Order Case
+
+Input:
+
+```
+[3,2,1]
+```
+
+No pivot exists.
 
 Reverse the entire array:
 
@@ -137,19 +171,18 @@ O(n)
 
 **O(1)**
 
-- The rearrangement is performed in-place.
+- The array is modified in-place without using any extra data structures.
 
 ---
 
 ## Why is this Optimal?
 
-- Generates the next permutation without enumerating all possibilities.
-- Uses only constant extra space.
-- Performs a single traversal and one reversal.
-- Meets all problem constraints.
+- Processes the array in linear time.
+- Uses constant extra memory.
+- Produces the immediate next lexicographical permutation without generating all permutations.
 
 ---
 
 ## Key Learning
 
-The Next Permutation algorithm relies on the observation that the suffix after the pivot is already in descending order. By swapping the pivot with the next larger element and reversing the suffix, we obtain the smallest lexicographically greater permutation in linear time.
+The Pivot → Successor → Reverse technique is a classic algorithm for permutation problems. By identifying the first decreasing element from the right, swapping it with the next greater element, and reversing the suffix, we efficiently compute the next permutation in-place.
