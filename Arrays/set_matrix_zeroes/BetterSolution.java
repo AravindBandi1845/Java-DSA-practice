@@ -3,7 +3,6 @@ class Solution {
 
         int m = matrix.length;
         int n = matrix[0].length;
-
         int[] rowMarker = new int[m];
         int[] colMarker = new int[n];
         for (int i = 0; i < m; i++) {
