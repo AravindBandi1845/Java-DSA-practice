@@ -9,7 +9,6 @@ After building the frequency map, traverse the map and collect all elements whos
 This eliminates redundant counting and improves the time complexity to linear time.
 
 ---
-
 ## Key Concept
 
 - Create a `HashMap<Integer, Integer>` to store the frequency of each element.
