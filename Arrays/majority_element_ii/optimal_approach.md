@@ -1,7 +1,6 @@
 # Approach Explanation (Optimal - Extended Boyer-Moore Voting Algorithm)
 
 ## Idea
-
 An element must appear more than `n / 3` times to be considered a majority element.
 
 There can be at most **two** such elements.
